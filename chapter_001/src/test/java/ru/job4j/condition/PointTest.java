@@ -24,7 +24,7 @@ public class PointTest {
 		 * Method is when false.
 		 */
 		@Test
-		public void whenIsPointSeventeenAndSixDoesntLieOnFunctionThenFalse() {
+		public void whenIsPointSixAndSeventeenDoesntLieOnFunctionThenFalse() {
 			Point point = new Point(6, 17);
 			boolean b = point.is(3, 2);
 			assertThat(b, is(false));
