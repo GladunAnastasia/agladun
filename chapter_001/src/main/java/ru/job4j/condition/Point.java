@@ -52,6 +52,6 @@ public class Point {
 	 * @return - length
 	 */
 	public double getDistance(Point b) {
-		return Math.sqrt(Math.pow(this.getX() - b.getX(), 2) + Math.pow(this.getY() - b.getY(), 2));
+		return Math.sqrt(Math.pow(this.x - b.x, 2) + Math.pow(this.y - b.y, 2));
   	}
 }
