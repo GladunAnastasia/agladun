@@ -17,4 +17,15 @@ public class Max {
 	public int max(int first, int second) {
 		return first > second ? first : second;
 	}
+	/**
+	 * Method returns maximum value.
+	 * @param first - first operand
+	 * @param second - second operand
+	 * @param third - third operand
+	 * @return maximum value
+	 */
+	 public int max(int first, int second, int third) {
+		Max m = new Max();
+		return m.max(first, second) > m.max(first, third) ? m.max(first, second) : m.max(first, third);
+	 }
 }
