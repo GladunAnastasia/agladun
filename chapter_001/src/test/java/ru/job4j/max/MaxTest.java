@@ -19,7 +19,7 @@ public class MaxTest {
 	public void whenMaxTwelveMoreThreeThenTwelve() {
 		Max max = new Max();
 		int result = max.max(12, 3);
-		assertThat(12, is(result));
+		assertThat(result, is(12));
 	}
 	/**
 	 * MaxTest.
@@ -28,6 +28,6 @@ public class MaxTest {
 	public void whenMaxThreeLessTwelveThenTwelve() {
 		Max max = new Max();
 		int result = max.max(3, 12);
-		assertThat(12, is(result));
+		assertThat(result, is(12));
 	}
 }
