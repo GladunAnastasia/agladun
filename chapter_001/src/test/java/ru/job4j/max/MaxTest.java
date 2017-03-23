@@ -84,4 +84,13 @@ public class MaxTest {
 		int result = max.max(3, 2, 1);
 		assertThat(result, is(3));
 	}
+	/**
+	 * MaxTest.
+	 */
+	@Test
+	public void whenMaxThreeThreeThreeThenTwelve() {
+		Max max = new Max();
+		int result = max.max(3, 3, 3);
+		assertThat(result, is(3));
+	}
 }
