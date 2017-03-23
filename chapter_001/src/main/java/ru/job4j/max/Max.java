@@ -25,7 +25,6 @@ public class Max {
 	 * @return maximum value
 	 */
 	 public int max(int first, int second, int third) {
-		Max m = new Max();
-		return m.max(first, second) > m.max(first, third) ? m.max(first, second) : m.max(first, third);
+		return max(max(first, second), max(first, third));
 	 }
 }

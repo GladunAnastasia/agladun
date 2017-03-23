@@ -44,6 +44,14 @@ public class Point {
 	 * @return - true or false
 	 */
 	public boolean is(int a, int b) {
-		return (y == a * x + b) ? true : false;
+		return y == a * x + b;
 	}
+	/**
+	 * getDistance.
+	 * @param b - operand
+	 * @return - length
+	 */
+	public double getDistance(Point b) {
+		return Math.sqrt(Math.pow(this.getX() - b.getX(), 2) + Math.pow(this.getY() - b.getY(), 2));
+  	}
 }
