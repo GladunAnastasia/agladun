@@ -35,7 +35,7 @@ public class CalculatorTest {
 	 * Method Substruct Test.
 	 */
 	@Test
-	public void whenSubstructNinePlusThreeThenSix() {
+	public void whenSubstructNineSubstructThreeThenSix() {
 		Calculator calc = new Calculator();
 		calc.substruct(9D, 3D);
 		double result = calc.getResult();
@@ -46,7 +46,7 @@ public class CalculatorTest {
 	 * Method Multiply Test.
 	 */
 	@Test
-	public void whenMultiplyNinePlusThreeThenTwentySeven() {
+	public void whenMultiplyNineMultiplyThreeThenTwentySeven() {
 		Calculator calc = new Calculator();
 		calc.multiply(9D, 3D);
 		double result = calc.getResult();
