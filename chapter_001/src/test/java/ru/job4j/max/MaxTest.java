@@ -15,7 +15,7 @@ public class MaxTest {
 	/**
 	 * MaxTest.
 	 */
-	 @Test
+	@Test
 	public void whenMaxTwelveMoreThreeThenTwelve() {
 		Max max = new Max();
 		int result = max.max(12, 3);
