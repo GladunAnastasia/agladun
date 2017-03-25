@@ -7,7 +7,7 @@ package ru.job4.loop;
  */
 public class Paint {
 	/**
-	 * Method calc.
+	 * Method piramid.
 	 * @param h - height
 	 * @return - returns pyramid
 	 */
