@@ -12,18 +12,18 @@ public class RotateArray {
 	 * @return - returns rotated array
 	 */
 	public int[][] rotate(int[][] array) {
-		int r = 0;
-        	int l = array.length;
-        	for (int j = array.length; j > 0; j -= 2, r++, l--) {
-            	int k = l - 1;
-            		for (int i = r; i < l - 1; i++, k--) {
-                		int t = array[i][l - 1];
-                		array[i][l - 1] = array[r][i];
-                		int m = array[l - 1][k];
-                		array[l - 1][k] = t;
-                		t = array[k][r];
-                		array[k][r] = m;
-                		array[r][i] = t;
+		int beginLength = 0;
+        	int length = array.length;
+        	for (int j = array.length; j > 0; j -= 2, beginLength++, length--) {
+            	int index = length - 1;
+            		for (int i = beginLength; i < length - 1; i++, index--) {
+                		int temp = array[i][length - 1];
+                		array[i][length - 1] = array[beginLength][i];
+                		int tempNew = array[length - 1][index];
+                		array[length - 1][index] = temp;
+                		temp = array[index][beginLength];
+                		array[index][beginLength] = tempNew;
+                		array[beginLength][i] = temp;
             		}
         	}
 		return array;
