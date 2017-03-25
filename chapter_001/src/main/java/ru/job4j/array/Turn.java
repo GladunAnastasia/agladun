@@ -13,13 +13,13 @@ public class Turn {
 	 */
 	public int[] back(int[] array) {
 		for (int i = 0; i < array.length; i++) {
-            int t = array[i];
-            array[i] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = t;
-            if (i == array.length / 2 - 1) {
-                break;
-            }
-        }
+            		int t = array[i];
+            		array[i] = array[array.length - 1 - i];
+            		array[array.length - 1 - i] = t;
+            			if (i == array.length / 2 - 1) {
+            	    			break;
+            			}
+        	}
 		return array;
 	}
 }

@@ -22,8 +22,8 @@ public class ArrayDuplicate {
                         if (array[j + 1].equals(array[array.length - 1 - end]) && j + 1 != array.length - 1 - end) {
                             end++;
                         } else {
-							break;
-						}
+				break;
+			}
                     }
                     String t = array[array.length - 1 - end];
                     array[array.length - 1 - end] = array[j + 1];
