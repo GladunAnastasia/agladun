@@ -1,4 +1,4 @@
-﻿package ru.job4j.array;
+package ru.job4j.array;
 /**
  * Class RotateArray.
  * @author Anastasia Gladun (netmislei@mail.ru)

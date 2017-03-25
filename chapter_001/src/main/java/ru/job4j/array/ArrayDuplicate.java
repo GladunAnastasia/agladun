@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class ArrayDuplicate {
 	/**
-	 * Method remove. ÁÅÇ ÄÎÏÎËÍÈÒÅËÜÍÛÕ ÌÀÑÑÈÂÎÂ.
+	 * Method remove. Ğ‘Ğ•Ğ— Ğ”ĞĞŸĞĞ›ĞĞ˜Ğ¢Ğ•Ğ›Ğ¬ĞĞ«Ğ¥ ĞœĞĞ¡Ğ¡Ğ˜Ğ’ĞĞ’.
 	 * @param array - array[][]
 	 * @return - returns array without duplicate
 	 */
@@ -32,7 +32,6 @@ public class ArrayDuplicate {
                 }
             }
         }
-        String[] arrayS = Arrays.copyOf(array, array.length - end);
-        return arrayS;
+        return Arrays.copyOf(array, array.length - end);
     }
 }
