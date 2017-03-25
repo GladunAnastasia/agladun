@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class ArrayDuplicate {
 	/**
-	 * Method remove.
+	 * Method remove. аег днонкмхрекэмшу люяяхбнб.
 	 * @param array - array[][]
 	 * @return - returns array without duplicate
 	 */

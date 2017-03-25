@@ -1,4 +1,4 @@
-package ru.job4j.array;
+﻿package ru.job4j.array;
 /**
  * Class RotateArray.
  * @author Anastasia Gladun (netmislei@mail.ru)
@@ -7,7 +7,7 @@ package ru.job4j.array;
  */
 public class RotateArray {
 	/**
-	 * Method rotate. Без дополнительного массива.
+	 * Method rotate. БЕЗ ДОПОЛНИТЕЛЬНОГО МАССИВА.
 	 * @param array - array[][]
 	 * @return - returns rotated array
 	 */
@@ -15,7 +15,7 @@ public class RotateArray {
 		int beginLength = 0;
         	int length = array.length;
         	for (int j = array.length; j > 0; j -= 2, beginLength++, length--) {
-            	int index = length - 1;
+            		int index = length - 1;
             		for (int i = beginLength; i < length - 1; i++, index--) {
                 		int temp = array[i][length - 1];
                 		array[i][length - 1] = array[beginLength][i];
