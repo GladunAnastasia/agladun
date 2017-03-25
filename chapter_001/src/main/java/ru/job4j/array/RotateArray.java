@@ -7,7 +7,7 @@ package ru.job4j.array;
  */
 public class RotateArray {
 	/**
-	 * Method sort. Без создания дополнительного массива.
+	 * Method sort.
 	 * @param array - array[][]
 	 * @return - returns rotated array
 	 */
