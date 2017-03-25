@@ -7,7 +7,7 @@ package ru.job4j.array;
  */
 public class RotateArray {
 	/**
-	 * Method rotate. БЕЗ ДОПОЛНИТЕЛЬНОГО МАССИВА.
+	 * Method rotate. Без дополнительного массива. Работает для квадрата любого размера.
 	 * @param array - array[][]
 	 * @return - returns rotated array
 	 */

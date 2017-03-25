@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class ArrayDuplicate {
 	/**
-	 * Method remove. БЕЗ ДОПОЛНИТЕЛЬНЫХ МАССИВОВ.
+	 * Method remove. Без дополнительного массива.
 	 * @param array - array[][]
 	 * @return - returns array without duplicate
 	 */
