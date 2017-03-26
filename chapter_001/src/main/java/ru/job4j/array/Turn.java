@@ -12,13 +12,10 @@ public class Turn {
 	 * @return - returns inverted array
 	 */
 	public int[] back(int[] array) {
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 0; i < array.length / 2 - 1; i++) {
             		int t = array[i];
             		array[i] = array[array.length - 1 - i];
             		array[array.length - 1 - i] = t;
-            			if (i == array.length / 2 - 1) {
-            	    			break;
-            			}
         	}
 		return array;
 	}
