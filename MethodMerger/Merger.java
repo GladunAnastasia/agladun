@@ -10,34 +10,16 @@ public class Merger {
     }
 
     public static int[] sort(int[] array1, int[] array2) {
-        int length = array1.length + array2.length;
-        int minLength = (array1.length > array2.length) ? array2.length : array1.length;
-        int[] array = new int[length];
-        int k = 0;
+        int[] array = new int[array1.length + array2.length];
         int i = 0;
         int j = 0;
-        while (k < length) {
-            if (((array1.length > array2.length) ? j : i) >= minLength) {
-                array[k] = (array1.length > array2.length) ? array1[j] : array2[j];
-                k++;
-                j++;
-            } else {
-                if (array1[i] < array2[j]) {
-                    array[k] = array1[i];
-                    i++;
-                    k++;
-                } else if (array1[i] > array2[j]) {
-                    array[k] = array2[j];
-                    j++;
-                    k++;
-                } else {
-                    array[k] = array1[i];
-                    array[k + 1] = array2[j];
-                    i++;
-                    j++;
-                    k += 2;
-                }
-            }
+        while (i < array1.length && j < array2.length) {
+            array[i + j] = (array1[i] < array2[j]) ? array1[i++] : (array1[i] == array2[j]) ? array1[i++] : array2[j++];
+        }
+        if (i != array1.length) {
+            System.arraycopy(array1, i, array, i + j, array1.length - i);
+        } else {
+            System.arraycopy(array2, j, array, i + j, array2.length - j);
         }
         return array;
     }
