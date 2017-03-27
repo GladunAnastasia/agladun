@@ -14,7 +14,7 @@ public class Merger {
         int i = 0;
         int j = 0;
         while (i < array1.length && j < array2.length) {
-            array[i + j] = (array1[i] < array2[j]) ? array1[i++] : (array1[i] == array2[j]) ? array1[i++] : array2[j++];
+            array[i + j] = array1[i] < array2[j] ? array1[i++] : array2[j++];
         }
         if (i != array1.length) {
             System.arraycopy(array1, i, array, i + j, array1.length - i);
