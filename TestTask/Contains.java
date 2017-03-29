@@ -2,8 +2,8 @@
 public class Contains {
     public static void main(String[] args) {
         Contains con = new Contains();
-        String origin = "длиннастрокаоченьдлинная";
-        String sub = "строка";
+        String origin = "РґР»РёРЅРЅР°СЃС‚СЂРѕРєР°РѕС‡РµРЅСЊРґР»РёРЅРЅР°СЏ";
+        String sub = "СЃС‚СЂРѕРєР°";
         System.out.println(con.contains(origin, sub));
     }
 
