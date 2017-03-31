@@ -10,10 +10,10 @@ import java.util.Arrays;
 public class ArrayDuplicate {
 	/**
 	 * Method remove. Без дополнительного массива.
-	 * @param array - array[][]
-	 * @return - returns array without duplicate
-	 */
-	public String[] remove(String[] array) {
+     * @param array - array[][]
+     * @return - returns array without duplicate
+     */
+    public String[] remove(String[] array) {
         int end = 0;
         for (int i = 0; i < array.length - 1 - end; i++) {
             for (int j = i; j < array.length - 1 - end; j++) {
@@ -22,8 +22,8 @@ public class ArrayDuplicate {
                         if (array[j + 1].equals(array[array.length - 1 - end]) && j + 1 != array.length - 1 - end) {
                             end++;
                         } else {
-				break;
-			}
+                            break;
+                        }
                     }
                     String t = array[array.length - 1 - end];
                     array[array.length - 1 - end] = array[j + 1];
