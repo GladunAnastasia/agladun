@@ -59,27 +59,12 @@ public class Tracker {
     }
 
     /**
-     * Печатает массив.
-     */
-    public void print() {
-        for (Item it : items) {
-            if (it != null) {
-                System.out.println(it.getId() + " " + it.getName());
-            } else {
-                System.out.println("null");
-            }
-        }
-        System.out.println();
-    }
-
-    /**
      * Удаляет ячейку массива.
      *
      * @param item - объект типа Item.
      */
     public void delete(Item item) {
         String id = item.getId();
-        //for (int j = items.length; j > 0; j--) {
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
                 System.arraycopy(items, i + 1, items, i, items.length - i - 1);
@@ -87,7 +72,6 @@ public class Tracker {
                 items[position - 1] = null;
             }
         }
-        //}
     }
 
     /**
@@ -129,5 +113,12 @@ public class Tracker {
      */
     public Item[] getAll() {
         return Arrays.copyOf(items, position);
+    }
+
+    /**
+     * @return - возвращает допустимое количество заявок.
+     */
+    public int getLength() {
+        return items.length;
     }
 }

@@ -8,6 +8,10 @@ package ru.job4j.tracker;
  */
 public class Item {
     /**
+     * id для автоматического проставления.
+     */
+    private static String position = "0";
+    /**
      * id - id заявки.
      */
     private String id;
@@ -43,13 +47,39 @@ public class Item {
     }
 
     /**
-     * @param id   - id заявки.
-     * @param name - название заявки.
+     * @param name    - название заявки.
+     * @param created - переменная.
+     */
+    public Item(String name, long created) {
+        this.id = setId();
+        this.name = name;
+        this.created = created;
+    }
+
+    /**
+     * @param id - id заявки.
+     */
+    public Item(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @param id      - id заявки.
+     * @param name    - название заявки.
      * @param created - переменная.
      */
     public Item(String id, String name, long created) {
         this.id = id;
         this.name = name;
         this.created = created;
+    }
+
+    /**
+     * Устанавливает id заяки.
+     * @return - возвращает id звяки.
+     */
+    public String setId() {
+        position = Integer.toString(Integer.parseInt(position) + 1);
+        return position;
     }
 }
