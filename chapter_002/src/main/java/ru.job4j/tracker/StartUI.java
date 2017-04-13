@@ -15,6 +15,10 @@ public class StartUI {
      * Переменная для меню.
      */
     private String startMenu;
+    /**
+     * Переменная для объекта класса Tracker.
+     */
+    private Tracker tracker;
 
     /**
      * Main.
@@ -22,23 +26,24 @@ public class StartUI {
      * @param args - входящие параметры.
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput()).init();
+        new StartUI(new ConsoleInput(), new Tracker()).init();
     }
 
     /**
      * Конструктор StartUI.
      *
-     * @param inputMenu - Строка, содержащая все пункты меню.
+     * @param input   - переменная, содержащая объект одного из классов, которые реализуют интерфейс Input.
+     * @param tracker - переменная, содержащая объект типа Tracker.
      */
-    public StartUI(Input inputMenu) {
-        this.input = inputMenu;
+    public StartUI(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
     }
 
     /**
      * Метод начала работы программы.
      */
     public void init() {
-        Tracker tracker = new Tracker();
         startMenu = new Menu().makeMenu();
         boolean doWhile = true;
         for (; doWhile;) {

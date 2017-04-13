@@ -16,6 +16,7 @@ public class ConsoleInput implements Input {
 
     /**
      * Метод выводит вопрос и считывает строку с консоли.
+     *
      * @param question - вопрос.
      * @return - считывает строку с консоли.
      */

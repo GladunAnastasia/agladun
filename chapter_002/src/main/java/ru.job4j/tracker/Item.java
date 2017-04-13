@@ -33,6 +33,20 @@ public class Item {
     private String[] comments;
 
     /**
+     * @return возвращает описание.
+     */
+    public String getDesc() {
+        return this.desc;
+    }
+
+    /**
+     * @return возвращает дату создания.
+     */
+    public long getCreated() {
+        return this.created;
+    }
+
+    /**
      * @return возвращает id.
      */
     public String getId() {
@@ -49,11 +63,13 @@ public class Item {
     /**
      * @param name    - название заявки.
      * @param created - переменная.
+     * @param desc    - описание заявки.
      */
-    public Item(String name, long created) {
+    public Item(String name, long created, String desc) {
         this.id = setId();
         this.name = name;
         this.created = created;
+        this.desc = desc;
     }
 
     /**
@@ -67,15 +83,18 @@ public class Item {
      * @param id      - id заявки.
      * @param name    - название заявки.
      * @param created - переменная.
+     * @param desc    - описание заявки.
      */
-    public Item(String id, String name, long created) {
+    public Item(String id, String name, long created, String desc) {
         this.id = id;
         this.name = name;
         this.created = created;
+        this.desc = desc;
     }
 
     /**
      * Устанавливает id заяки.
+     *
      * @return - возвращает id звяки.
      */
     public String setId() {
