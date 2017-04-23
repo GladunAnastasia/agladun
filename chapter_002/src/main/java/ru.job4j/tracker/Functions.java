@@ -17,7 +17,7 @@ public class Functions {
     private static final int SHOW = 1;
     /**
      * UPDATE.
-      */
+     */
     private static final int UPDATE = 2;
     /**
      * DELETE.
@@ -35,6 +35,7 @@ public class Functions {
      * EXIT.
      */
     private static final int EXIT = 6;
+
     /**
      * Выполнение пунктов из меню.
      *
@@ -72,12 +73,23 @@ public class Functions {
             } else if (number == FINDBYID) {
                 String id = input.ask("Input ID: ");
                 Item item = tracker.findById(id);
-                System.out.println("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc());
+                String text = "ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc();
+                if (input instanceof StubOutput) {
+                    passItemText(input, text);
+                } else {
+                    System.out.println(text);
+                }
             } else if (number == FINDBYNAME) {
                 String name = input.ask("Input item's name: ");
                 Item[] items = tracker.findByName(name);
+                StringBuilder text = new StringBuilder();
                 for (Item item : items) {
-                    System.out.println("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc());
+                    text.append("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc() + System.getProperty("line.separator"));
+                }
+                if (input instanceof StubOutput) {
+                    passItemText(input, text.toString());
+                } else {
+                    System.out.println(text);
                 }
             } else if (number == EXIT) {
                 doWhile = false;
@@ -87,5 +99,13 @@ public class Functions {
             System.out.println("Input correct data");
         }
         return doWhile;
+    }
+
+    /**
+     * @param input - объект интерфейса Input.
+     * @param text  - текст для теста.
+     */
+    public void passItemText(Input input, String text) {
+        ((StubOutput) input).setItemText(text);
     }
 }

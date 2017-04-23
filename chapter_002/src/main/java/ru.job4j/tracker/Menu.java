@@ -18,6 +18,7 @@ public class Menu {
 
     /**
      * Выводит все пункты меню одной строкой.
+     *
      * @return - строка меню.
      */
     public String makeMenu() {
