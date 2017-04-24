@@ -25,7 +25,6 @@ public class PaintTest {
         Paint paint = new Paint();
         paint.draw(new Triangle());
         String separator = System.getProperty("line.separator");
-        //assertThat(out.toString(), is("    *" + separator + "   ***" + separator + "  *****" + separator + " *******" + separator + "*********" + separator));
         assertThat(out.toString(), is(String.format("    *%s   ***%<s  *****%<s *******%<s*********%<s", separator)));
     }
 
