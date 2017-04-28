@@ -36,6 +36,13 @@ public class StubInputTest {
         assertThat(tracker.getAll()[0], is(item));
     }
 
+//    public static void main(String[] args) {
+//        Tracker tracker = new Tracker();
+//        Item item = new Item("test1", 123456L, "testDescription");
+//        tracker.add(item);
+//        Input input = new StubInput(new String[]{"2", item.getId(), "test name NEW", "descNEW", "123123", "6"});
+//        new StartUI(input, tracker).init();
+//    }
     /**
      * MethodTest.
      */

@@ -39,27 +39,25 @@ public class StubOutput implements Input {
      * Метод выводит вопрос и считывает строку с консоли.
      *
      * @param question - вопрос.
+     * @param range    - диапозон действий.
      * @return - считывает строку с консоли.
      */
-    public String ask(String question) {
+    public int ask(String question, int[] range) {
         System.out.println(question);
         if ("Select: ".equals(question) && !flag) {
             flag = true;
             System.out.println(list[0]);
-            return list[0];
+            return Integer.valueOf(list[0]);
         } else if ("Select: ".equals(question)) {
             System.out.println(list[5]);
-            return list[5];
-        } else if ("Input item's name: ".equals(question)) {
-            return list[2];
-        } else if ("Input ID: ".equals(question)) {
-            return list[1];
+            return Integer.valueOf(list[5]);
         }
-        return "";
+        return 0;
     }
 
     /**
-     * Устанавливает значение переменно text.
+     * Устанавливает значение переменной text.
+     *
      * @param text - текст для теста.
      */
     public void setItemText(String text) {
@@ -71,5 +69,20 @@ public class StubOutput implements Input {
      */
     public String getText() {
         return text;
+    }
+
+    /**
+     * @param question - вопрос.
+     * @return - возвращает номер позиции.
+     */
+    @Override
+    public String ask(String question) {
+        System.out.println(question);
+        if ("Input item's name: ".equals(question)) {
+            return list[2];
+        } else if ("Input ID: ".equals(question)) {
+            return list[1];
+        }
+        return "";
     }
 }

@@ -12,4 +12,11 @@ public interface Input {
      * @return - зависит от реализации.
      */
     String ask(String question);
+
+    /**
+     * @param question - вопрос.
+     * @param range    - диапозон действий.
+     * @return - возвращает номер позиции.
+     */
+    int ask(String question, int[] range);
 }

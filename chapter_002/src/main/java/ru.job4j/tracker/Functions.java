@@ -4,9 +4,43 @@ package ru.job4j.tracker;
  * Класс Functions.
  *
  * @author Анастасия Гладун (netmislei@mail.ru)
- * @since 10.04.2017
+ * @since 27.04.2017
  */
 public class Functions {
+    /**
+     * Диапозон действий.
+     */
+    private int[] range = {0, 1, 2, 3, 4, 5, 6};
+    /**
+     * Переменная типа Tracker.
+     */
+    private Tracker tracker;
+    /**
+     * Переменная типа Input.
+     */
+    private Input input;
+
+    /**
+     * @param input   - переменная типа Tracker.
+     * @param tracker - переменная типа Input.
+     */
+    public Functions(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
+    }
+
+    /**
+     * Список действий.
+     */
+    private UserAction[] actions = new UserAction[7];
+    /**
+     * Флаг.
+     */
+    private boolean doWhile = true;
+    /**
+     * Номер позиции.
+     */
+    private int position = 0;
     /**
      * ADD.
      */
@@ -37,68 +71,230 @@ public class Functions {
     private static final int EXIT = 6;
 
     /**
-     * Выполнение пунктов из меню.
-     *
-     * @param tracker - объект класса Tracker.
-     * @param input   - объект интерфейса Input.
-     * @return - возвращает булево значение. Продолжать выводить меню или нет.
+     * Заполняет список действий.
      */
-    public boolean doFunction(Tracker tracker, Input input) {
-        boolean doWhile = true;
-        try {
-            int number = Integer.parseInt(input.ask("Select: "));
-            if (number == ADD) {
-                if (tracker.findAll().length == tracker.getLength()) {
-                    System.out.println("Overlimit");
-                    System.out.println();
-                    return doWhile;
-                }
-                String name = input.ask("Input item's name: ");
-                String desc = input.ask("Input description: ");
-                long date = Long.parseLong(input.ask("Input date: "));
-                tracker.add(new Item(name, date, desc));
-            } else if (number == SHOW) {
-                for (Item item : tracker.findAll()) {
-                    System.out.println("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc());
-                }
-            } else if (number == UPDATE) {
-                String id = input.ask("Input ID: ");
-                String newName = input.ask("Correct name: ");
-                String desc = input.ask("Correct description: ");
-                long newDate = Long.parseLong(input.ask("Correct date: "));
-                tracker.update(new Item(id, newName, newDate, desc));
-            } else if (number == DELETE) {
-                String id = input.ask("Input ID: ");
-                tracker.delete(new Item(id));
-            } else if (number == FINDBYID) {
-                String id = input.ask("Input ID: ");
-                Item item = tracker.findById(id);
-                String text = "ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc();
-                if (input instanceof StubOutput) {
-                    passItemText(input, text);
-                } else {
-                    System.out.println(text);
-                }
-            } else if (number == FINDBYNAME) {
-                String name = input.ask("Input item's name: ");
-                Item[] items = tracker.findByName(name);
-                StringBuilder text = new StringBuilder();
-                for (Item item : items) {
-                    text.append("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc() + System.getProperty("line.separator"));
-                }
-                if (input instanceof StubOutput) {
-                    passItemText(input, text.toString());
-                } else {
-                    System.out.println(text);
-                }
-            } else if (number == EXIT) {
-                doWhile = false;
-            }
-            System.out.println();
-        } catch (Exception e) {
-            System.out.println("Input correct data");
+    public void fillActions() {
+        actions[position++] = new AddItem();
+        actions[position++] = new ShowItems();
+        actions[position++] = new UpdateItem();
+        actions[position++] = new DeleteItem();
+        actions[position++] = new FindItemById();
+        actions[position++] = new FindItemByName();
+    }
+
+    /**
+     * Отображает список действий.
+     */
+    public void show() {
+        for (UserAction action : actions) {
+            System.out.println(action.info());
         }
-        return doWhile;
+    }
+
+    /**
+     * @param action - новое действие.
+     */
+    public void addAction(UserAction action) {
+        actions[position++] = action;
+    }
+
+    /**
+     * @param key - номер действия.
+     * @return - возвращает флаг продолжения вывода меню.
+     */
+    public boolean select(int key) {
+        actions[key].execute(input, tracker);
+        return key != EXIT;
+    }
+
+    /**
+     * Добавление новой заявки.
+     */
+    private class AddItem extends BaseAction {
+        /**
+         * @return - возвращает номер действия.
+         */
+        public int key() {
+            return ADD;
+        }
+
+        /**
+         * @param input   - переменная интерфейса Input.
+         * @param tracker - переменная класса Tracker.
+         */
+        public void execute(Input input, Tracker tracker) {
+            if (tracker.findAll().length == tracker.getLength()) {
+                System.out.println("Overlimit");
+                System.out.println();
+            }
+            String name = input.ask("Input item's name: ");
+            String desc = input.ask("Input description: ");
+            long date = Long.parseLong(input.ask("Input date: "));
+            tracker.add(new Item(name, date, desc));
+        }
+
+        /**
+         * Конструктор.
+         */
+        private AddItem() {
+            super(String.format("%s. %s", ADD, "Add the new item."));
+        }
+    }
+
+    /**
+     * Отображает список заявок.
+     */
+    private class ShowItems extends BaseAction {
+        /**
+         * @return - возвращает номер действия.
+         */
+        public int key() {
+            return SHOW;
+        }
+
+        /**
+         * Отображает список действий.
+         *
+         * @param input   - переменная интерфейса Input.
+         * @param tracker - переменная класса Tracker.
+         */
+        public void execute(Input input, Tracker tracker) {
+            for (Item item : tracker.findAll()) {
+                System.out.println("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc());
+            }
+        }
+        /**
+         * Конструктор.
+         */
+        private ShowItems() {
+            super(String.format("%s. %s", SHOW, "Show all items."));
+        }
+    }
+
+    /**
+     * Редактирует заявку.
+     */
+    private class UpdateItem extends BaseAction {
+        /**
+         * @return - возвращает номер действия.
+         */
+        public int key() {
+            return UPDATE;
+        }
+
+        /**
+         * @param input   - переменная интерфейса Input.
+         * @param tracker - переменная класса Tracker.
+         */
+        public void execute(Input input, Tracker tracker) {
+            String id = input.ask("Input ID: ");
+            String newName = input.ask("Correct name: ");
+            String desc = input.ask("Correct description: ");
+            long newDate = Long.parseLong(input.ask("Correct date: "));
+            tracker.update(new Item(id, newName, newDate, desc));
+        }
+        /**
+         * Конструктор.
+         */
+        private UpdateItem() {
+            super(String.format("%s. %s", UPDATE, "Update the item."));
+        }
+    }
+
+    /**
+     * Удаляет заявку.
+     */
+    private class DeleteItem extends BaseAction {
+        /**
+         * @return - возвращает номер действия.
+         */
+        public int key() {
+            return DELETE;
+        }
+
+        /**
+         * @param input   - переменная интерфейса Input.
+         * @param tracker - переменная класса Tracker.
+         */
+        public void execute(Input input, Tracker tracker) {
+            String id = input.ask("Input ID: ");
+            tracker.delete(new Item(id));
+        }
+        /**
+         * Конструктор.
+         */
+        private DeleteItem() {
+            super(String.format("%s. %s", DELETE, "Delete the item."));
+        }
+    }
+
+    /**
+     * Ищет заявку по Id.
+     */
+    private class FindItemById extends BaseAction {
+        /**
+         * @return - возвращает номер действия.
+         */
+        public int key() {
+            return FINDBYID;
+        }
+
+        /**
+         * @param input   - переменная интерфейса Input.
+         * @param tracker - переменная класса Tracker.
+         */
+        public void execute(Input input, Tracker tracker) {
+            String id = input.ask("Input ID: ");
+            Item item = tracker.findById(id);
+            String text = "ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc();
+            if (input instanceof StubOutput) {
+                passItemText(input, text.toString());
+            } else {
+                System.out.println(text);
+            }
+        }
+        /**
+         * Конструктор.
+         */
+        private FindItemById() {
+            super(String.format("%s. %s", FINDBYID, "Find item by id."));
+        }
+    }
+
+    /**
+     * Ищет заявку по имени.
+     */
+    private class FindItemByName extends BaseAction {
+        /**
+         * @return - возвращает номер действия.
+         */
+        public int key() {
+            return FINDBYNAME;
+        }
+
+        /**
+         * @param input   - переменная интерфейса Input.
+         * @param tracker - переменная класса Tracker.
+         */
+        public void execute(Input input, Tracker tracker) {
+            String name = input.ask("Input item's name: ");
+            Item[] items = tracker.findByName(name);
+            StringBuilder text = new StringBuilder();
+            for (Item item : items) {
+                text.append("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc() + System.getProperty("line.separator"));
+            }
+            if (input instanceof StubOutput) {
+                passItemText(input, text.toString());
+            } else {
+                System.out.println(text);
+            }
+        }
+        /**
+         * Конструктор.
+         */
+        private FindItemByName() {
+            super(String.format("%s. %s", FINDBYNAME, "Find item by name."));
+        }
     }
 
     /**
