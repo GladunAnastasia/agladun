@@ -19,7 +19,7 @@ public class ConsoleInput implements Input {
     private Scanner scanner = new Scanner(System.in);
 
     /**
-     * Метод выводит вопрос и считывает с                                   троку с консоли.
+     * Метод выводит вопрос и считывает строку с консоли.
      *
      * @param question - вопрос.
      * @return - считывает строку с консоли.
@@ -27,9 +27,6 @@ public class ConsoleInput implements Input {
     public String ask(String question) {
         System.out.println(question);
         String text = scanner.nextLine();
-        if ("Input date: ".equals(question)) {
-            Integer.valueOf(text);
-        }
         return text;
     }
 

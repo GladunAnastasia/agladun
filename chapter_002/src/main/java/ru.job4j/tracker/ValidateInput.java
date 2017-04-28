@@ -40,6 +40,9 @@ public class ValidateInput extends ConsoleInput {
         do {
             try {
                 value = super.ask(question);
+                if ("Input date: ".equals(question)) {
+                    Integer.valueOf(value);
+                }
                 invalid = false;
             } catch (NumberFormatException e) {
                 System.out.println("Please, enter validate data again.");
