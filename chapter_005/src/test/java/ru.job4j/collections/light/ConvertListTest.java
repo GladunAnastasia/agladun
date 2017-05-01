@@ -2,7 +2,9 @@ package ru.job4j.collections.light;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -35,6 +37,20 @@ public class ConvertListTest {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25);
         int[][] array = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}, {17, 18, 19, 20}, {21, 22, 23, 24}, {25, 0, 0, 0}};
         assertThat(con.toArray(list, 7), is(array));
+    }
+
+    /**
+     * Test method.
+     */
+    @Test
+    public void whenArraysAsListThenList() {
+        ConvertList con = new ConvertList();
+        ArrayList<int[]> list = new ArrayList<int[]>();
+        list.add(new int[]{1, 2});
+        list.add(new int[]{3, 4, 5, 6});
+        list.add(new int[]{7, 8, 9});
+        List<Integer> result = con.convert(list);
+        assertThat(result, is(Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9})));
     }
 
 

@@ -2,6 +2,7 @@ package ru.job4j.collections.light;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -43,5 +44,21 @@ public class ConvertList {
             }
         }
         return array;
+    }
+
+    /**
+     * @param list - коллекция массивов чисел.
+     * @return - коллекция чисел.
+     */
+    public List<Integer> convert (List<int[]> list) {
+        Iterator<int[]> it = list.iterator();
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        while(it.hasNext()) {
+            int[] array = it.next();
+            for (int i = 0; i < array.length; i++) {
+                linkedList.add(array[i]);
+            }
+        }
+        return linkedList;
     }
 }
