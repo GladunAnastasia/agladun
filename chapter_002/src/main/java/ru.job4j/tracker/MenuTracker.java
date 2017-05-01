@@ -6,7 +6,7 @@ package ru.job4j.tracker;
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 27.04.2017
  */
-public class Functions {
+public class MenuTracker {
     /**
      * Диапозон действий.
      */
@@ -24,7 +24,7 @@ public class Functions {
      * @param input   - переменная типа Tracker.
      * @param tracker - переменная типа Input.
      */
-    public Functions(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }

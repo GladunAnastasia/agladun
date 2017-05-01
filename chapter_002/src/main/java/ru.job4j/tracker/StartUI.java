@@ -48,7 +48,7 @@ public class StartUI {
      * Метод начала работы программы.
      */
     public void init() {
-        Functions functions = new Functions(input, tracker);
+        MenuTracker functions = new MenuTracker(input, tracker);
         BaseAction deleteItem = new BaseAction(String.format("%s. %s", 6, "Exit the programm.")) {
             @Override
             public int key() {
