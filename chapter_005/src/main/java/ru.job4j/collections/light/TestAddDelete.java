@@ -58,8 +58,8 @@ public class TestAddDelete {
         System.out.println("Add element to an LinkedList: " + test.add(linkedList, "String for test - ", 100000));
         System.out.println("Add element to an TreeSet: " + test.add(treeList, "String for test - ", 100000));
         System.out.println();
-        System.out.println("Delete element to an ArrayList: " + test.delete(arrayList, 100000));
-        System.out.println("Delete element to an LinkedList: " + test.delete(linkedList, 100000));
-        System.out.println("Delete element to an TreeSet: " + test.delete(treeList, 100000));
+        System.out.println("Delete element from an ArrayList: " + test.delete(arrayList, 100000));
+        System.out.println("Delete element from an LinkedList: " + test.delete(linkedList, 100000));
+        System.out.println("Delete element from an TreeSet: " + test.delete(treeList, 100000));
     }
 }
