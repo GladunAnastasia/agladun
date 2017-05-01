@@ -50,10 +50,10 @@ public class ConvertList {
      * @param list - коллекция массивов чисел.
      * @return - коллекция чисел.
      */
-    public List<Integer> convert (List<int[]> list) {
+    public List<Integer> convert(List<int[]> list) {
         Iterator<int[]> it = list.iterator();
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             int[] array = it.next();
             for (int i = 0; i < array.length; i++) {
                 linkedList.add(array[i]);
