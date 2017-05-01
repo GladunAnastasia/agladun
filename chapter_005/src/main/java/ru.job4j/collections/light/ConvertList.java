@@ -1,6 +1,7 @@
 package ru.job4j.collections.light;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -30,14 +31,15 @@ public class ConvertList {
      * @return - двумерный массив.
      */
     public int[][] toArray(List<Integer> list, int rows) {
-        int index = 0;
-        int[][] array = new int[rows][rows];
-        for (int i = 0; i < rows + 1; i++) {
-            for (int j = 0; j < rows; j++) {
-                if (index == list.size()) {
+        int b = list.size() / rows + ((list.size() % rows) > 0 ? 1 : 0);
+        int[][] array = new int[rows][b];
+        Iterator<Integer> it = list.iterator();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < b; j++) {
+                if (!it.hasNext()) {
                     break;
                 }
-                array[i][j] = list.get(index++);
+                array[i][j] = it.next();
             }
         }
         return array;
