@@ -33,4 +33,11 @@ public class User implements Comparable<User> {
     public int compareTo(User user) {
         return ((age <= user.age) ? -1 : 1);
     }
+
+    /**
+     * @return - возвращает имя.
+     */
+    public String getName() {
+        return name;
+    }
 }

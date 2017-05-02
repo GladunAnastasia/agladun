@@ -1,9 +1,11 @@
 package ru.job4j.collections.light.comparable;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Comparator;
 
 /**
  * Класс SortUser.
@@ -23,5 +25,31 @@ public class SortUser {
             set.add(it.next());
         }
         return set;
+    }
+
+    /**
+     * @param list - список пользователей.
+     * @return - отсортированный список пользователей по хэш коду.
+     */
+    public List<User> sortHash(List<User> list) {
+        Collections.sort(list, new Comparator<User>() {
+            public int compare(User user1, User user2) {
+                return user1.hashCode() < user2.hashCode() ? -1 : (user1.hashCode() > user2.hashCode() ? 1 : 0);
+            }
+        });
+        return list;
+    }
+
+    /**
+     * @param list - список пользователей.
+     * @return - отсортированный список пользователей по длине имени.
+     */
+    public List<User> sortLength(List<User> list) {
+        Collections.sort(list, new Comparator<User>() {
+            public int compare(User user1, User user2) {
+                return user1.getName().length() - user2.getName().length();
+            }
+        });
+        return list;
     }
 }
