@@ -31,10 +31,11 @@ public class User implements Comparable<User> {
      */
     @Override
     public int compareTo(User user) {
+        // на заметку
         //return Integer.compare(age, user.age);
-        return Integer.valueOf(age).compareTo(user.age);
+        //return Integer.valueOf(age).compareTo(user.age);
         //return ((age < user.age) ? -1 : age > user.age ? 1 : 0);
-        //return ((age < user.age) ? -1 : 1);
+        return ((age < user.age) ? -1 : (age > user.age) ? 1 : name.equals(user.name) ? 0 : -1);
     }
 
     /**

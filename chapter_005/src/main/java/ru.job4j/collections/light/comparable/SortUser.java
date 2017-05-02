@@ -1,6 +1,11 @@
 package ru.job4j.collections.light.comparable;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Класс SortUser.
@@ -20,24 +25,6 @@ public class SortUser {
             set.add(it.next());
         }
         return set;
-    }
-
-    public static void main(String[] args) {
-        SortUser sortUser = new SortUser();
-        User userOne = new User("Max", 25);
-        User userTwo = new User("Denis", 35);
-        User userThree = new User("Alex", 19);
-        User userFour = new User("Andrei", 25);
-        User userFive = new User("Artem", 17);
-        User userSix = new User("Dmitrii", 29);
-        ArrayList<User> list = new ArrayList<User>();
-        list.add(userOne);
-        list.add(userTwo);
-        list.add(userThree);
-        list.add(userFour);
-        list.add(userFive);
-        list.add(userSix);
-        Set<User> set = sortUser.sort(list);
     }
 
     /**
