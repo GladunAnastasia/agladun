@@ -8,7 +8,7 @@ package ru.job4j.collections.light;
  */
 public class User {
     /**
-     *
+     * Статический индекс.
      */
     private static int position;
     /**
@@ -26,6 +26,7 @@ public class User {
 
     /**
      * Конструктор.
+     *
      * @param name - имя.
      * @param city - город.
      */
