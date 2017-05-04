@@ -35,11 +35,10 @@ public class IteratorEven implements Iterator {
     @Override
     public boolean hasNext() {
         int indexSecond = index;
-        for (int i = indexSecond; i < values.length; i++) {
+        for (int i = indexSecond; i < values.length; i++, indexSecond++) {
             if (((Integer) (values[i])) % 2 == 0) {
                 break;
             }
-            indexSecond++;
         }
         return values.length > indexSecond;
     }
@@ -50,13 +49,12 @@ public class IteratorEven implements Iterator {
     @Override
     public Object next() {
         Object value = null;
-        for (int i = index; i < values.length; i++) {
+        for (int i = index; i < values.length; i++, index++) {
             if (((Integer) (values[i])) % 2 == 0) {
                 value = values[index];
                 index++;
                 break;
             }
-            index++;
         }
         return (Integer) value;
     }

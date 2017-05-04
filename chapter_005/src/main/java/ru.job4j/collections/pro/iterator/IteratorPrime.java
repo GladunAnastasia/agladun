@@ -35,9 +35,8 @@ public class IteratorPrime implements Iterator {
     @Override
     public boolean hasNext() {
         int indexSecond = index;
-        for (int i = indexSecond; i < values.length; i++) {
+        for (int i = indexSecond; i < values.length; i++, indexSecond++) {
             if (values[indexSecond] % 2 == 0 && values[indexSecond] != 2) {
-                indexSecond++;
                 continue;
             }
             int sum = 0;
@@ -47,11 +46,9 @@ public class IteratorPrime implements Iterator {
                     break;
                 }
             }
-            if (sum == 0 && values[indexSecond] > 0) {
-                indexSecond++;
+            if (sum == 0 && values[indexSecond++] > 0) {
                 break;
             }
-            indexSecond++;
         }
         return values.length > indexSecond;
     }
@@ -62,9 +59,8 @@ public class IteratorPrime implements Iterator {
     @Override
     public Object next() {
         Object value = null;
-        for (int i = index; i < values.length; i++) {
+        for (int i = index; i < values.length; i++, index++) {
             if (values[index] % 2 == 0 && values[index] != 2) {
-                index++;
                 continue;
             }
             int sum = 0;
@@ -75,11 +71,9 @@ public class IteratorPrime implements Iterator {
                 }
             }
             if (sum == 0 && values[index] > 0) {
-                value = (Integer) values[index];
-                index++;
+                value = (Integer) values[index++];
                 break;
             }
-            index++;
         }
         return (Integer) value;
     }
