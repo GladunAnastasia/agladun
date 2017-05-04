@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 /**
  * Класс Functions.
  *
@@ -7,10 +9,6 @@ package ru.job4j.tracker;
  * @since 27.04.2017
  */
 public class MenuTracker {
-    /**
-     * Диапозон действий.
-     */
-    private int[] range = {0, 1, 2, 3, 4, 5, 6};
     /**
      * Переменная типа Tracker.
      */
@@ -32,7 +30,7 @@ public class MenuTracker {
     /**
      * Список действий.
      */
-    private UserAction[] actions = new UserAction[7];
+    private ArrayList<UserAction> actions = new ArrayList<UserAction>();
     /**
      * Флаг.
      */
@@ -74,12 +72,12 @@ public class MenuTracker {
      * Заполняет список действий.
      */
     public void fillActions() {
-        actions[position++] = new AddItem();
-        actions[position++] = new ShowItems();
-        actions[position++] = new UpdateItem();
-        actions[position++] = new DeleteItem();
-        actions[position++] = new FindItemById();
-        actions[position++] = new FindItemByName();
+        actions.add(new AddItem());
+        actions.add(new ShowItems());
+        actions.add(new UpdateItem());
+        actions.add(new DeleteItem());
+        actions.add(new FindItemById());
+        actions.add(new FindItemByName());
     }
 
     /**
@@ -95,7 +93,7 @@ public class MenuTracker {
      * @param action - новое действие.
      */
     public void addAction(UserAction action) {
-        actions[position++] = action;
+        actions.add(action);
     }
 
     /**
@@ -103,7 +101,7 @@ public class MenuTracker {
      * @return - возвращает флаг продолжения вывода меню.
      */
     public boolean select(int key) {
-        actions[key].execute(input, tracker);
+        actions.get(key).execute(input, tracker);
         return key != EXIT;
     }
 
@@ -123,10 +121,6 @@ public class MenuTracker {
          * @param tracker - переменная класса Tracker.
          */
         public void execute(Input input, Tracker tracker) {
-            if (tracker.findAll().length == tracker.getLength()) {
-                System.out.println("Overlimit");
-                System.out.println();
-            }
             String name = input.ask("Input item's name: ");
             String desc = input.ask("Input description: ");
             long date = Long.parseLong(input.ask("Input date: "));
@@ -163,6 +157,7 @@ public class MenuTracker {
                 System.out.println("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc());
             }
         }
+
         /**
          * Конструктор.
          */
@@ -193,6 +188,7 @@ public class MenuTracker {
             long newDate = Long.parseLong(input.ask("Correct date: "));
             tracker.update(new Item(id, newName, newDate, desc));
         }
+
         /**
          * Конструктор.
          */
@@ -220,6 +216,7 @@ public class MenuTracker {
             String id = input.ask("Input ID: ");
             tracker.delete(new Item(id));
         }
+
         /**
          * Конструктор.
          */
@@ -253,6 +250,7 @@ public class MenuTracker {
                 System.out.println(text);
             }
         }
+
         /**
          * Конструктор.
          */
@@ -278,7 +276,7 @@ public class MenuTracker {
          */
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Input item's name: ");
-            Item[] items = tracker.findByName(name);
+            ArrayList<Item> items = tracker.findByName(name);
             StringBuilder text = new StringBuilder();
             for (Item item : items) {
                 text.append("ID: " + item.getId() + " Name: " + item.getName() + " Description: " + item.getDesc() + System.getProperty("line.separator"));
@@ -289,6 +287,7 @@ public class MenuTracker {
                 System.out.println(text);
             }
         }
+
         /**
          * Конструктор.
          */

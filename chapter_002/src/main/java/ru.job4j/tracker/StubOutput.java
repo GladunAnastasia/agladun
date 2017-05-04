@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Класс StubOutput.
  *
@@ -14,20 +17,17 @@ public class StubOutput implements Input {
     /**
      * Список действий.
      */
-    private String[] list = new String[6];
+    private ArrayList<String> list = new ArrayList<String>();
 
     /**
      * Конструктор StubInput.
      *
      * @param list - список действий.
      */
-    public StubOutput(String[] list) {
-        this.list[0] = list[0];
-        this.list[1] = list[1];
-        this.list[2] = list[2];
-        this.list[3] = list[3];
-        this.list[4] = list[4];
-        this.list[5] = list[5];
+    public StubOutput(List<String> list) {
+        for (int i = 0; i < list.size(); i++) {
+            this.list.add(list.get(i));
+        }
     }
 
     /**
@@ -42,15 +42,15 @@ public class StubOutput implements Input {
      * @param range    - диапозон действий.
      * @return - считывает строку с консоли.
      */
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         System.out.println(question);
         if ("Select: ".equals(question) && !flag) {
             flag = true;
-            System.out.println(list[0]);
-            return Integer.valueOf(list[0]);
+            System.out.println(list.get(0));
+            return Integer.valueOf(list.get(0));
         } else if ("Select: ".equals(question)) {
-            System.out.println(list[5]);
-            return Integer.valueOf(list[5]);
+            System.out.println(list.get(5));
+            return Integer.valueOf(list.get(5));
         }
         return 0;
     }
@@ -79,9 +79,9 @@ public class StubOutput implements Input {
     public String ask(String question) {
         System.out.println(question);
         if ("Input item's name: ".equals(question)) {
-            return list[2];
+            return list.get(2);
         } else if ("Input ID: ".equals(question)) {
-            return list[1];
+            return list.get(1);
         }
         return "";
     }

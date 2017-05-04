@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -20,7 +22,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("1", "test1", 123L, "testDescription");
         tracker.add(item);
-        assertThat(tracker.getAll()[0], is(item));
+        assertThat(tracker.getAll().get(0), is(item));
     }
 
     /**
@@ -32,7 +34,7 @@ public class TrackerTest {
         Item item = new Item("test1", 123456L, "testDescriptionNEW");
         tracker.add(item);
         tracker.update(item);
-        assertThat(tracker.getAll()[0], is(item));
+        assertThat(tracker.getAll().get(0), is(item));
     }
 
     /**
@@ -63,7 +65,7 @@ public class TrackerTest {
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(null);
-        assertThat(tracker.findAll(), is(new Item[]{item1, item2, item3}));
+        assertThat(tracker.findAll(), is(Arrays.asList(new Item[]{item1, item2, item3})));
     }
 
     /**
@@ -78,7 +80,7 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        assertThat(tracker.findByName("test1"), is(new Item[]{item1, item3}));
+        assertThat(tracker.findByName("test1"), is(Arrays.asList(new Item[]{item1, item3})));
     }
 
     /**
@@ -99,6 +101,6 @@ public class TrackerTest {
         tracker.add(item5);
         tracker.delete(item2);
         tracker.delete(item4);
-        assertThat(tracker.getAll(), is(new Item[]{item1, item3, item5, null, null}));
+        assertThat(tracker.getAll(), is(Arrays.asList(new Item[]{item1, item3, item5})));
     }
 }

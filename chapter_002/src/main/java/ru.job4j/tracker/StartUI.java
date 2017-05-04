@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Класс StartUI.
  *
@@ -10,7 +13,7 @@ public class StartUI {
     /**
      * Диапозон действий.
      */
-    private int[] range = {0, 1, 2, 3, 4, 5, 6};
+    private List<Integer> range = Arrays.asList(new Integer[] {0, 1, 2, 3, 4, 5, 6});
     /**
      * Переменная интерфейса Input.
      */

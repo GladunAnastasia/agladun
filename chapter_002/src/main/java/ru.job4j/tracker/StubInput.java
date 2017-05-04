@@ -1,5 +1,9 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Класс StubInput.
  *
@@ -10,7 +14,7 @@ public class StubInput implements Input {
     /**
      * Диапозон действий.
      */
-    private int[] range = {0, 1, 2, 3, 4, 5, 6};
+    private List<Integer> range = Arrays.asList(new Integer[] {0, 1, 2, 3, 4, 5, 6});
     /**
      * Флаг.
      */
@@ -18,40 +22,37 @@ public class StubInput implements Input {
     /**
      * Список действий.
      */
-    private String[] list = new String[6];
+    private ArrayList<String> list = new ArrayList<String>();
 
     /**
      * Конструктор StubInput.
      *
      * @param list - список действий.
      */
-    public StubInput(String[] list) {
-        this.list[0] = list[0];
-        this.list[1] = list[1];
-        this.list[2] = list[2];
-        this.list[3] = list[3];
-        this.list[4] = list[4];
-        this.list[5] = list[5];
+    public StubInput(List<String> list) {
+        for (int i = 0; i < list.size(); i++) {
+            this.list.add(list.get(i));
+        }
     }
 
     /**
      * Метод выводит вопрос и считывает строку с консоли.
      *
      * @param question - вопрос.
-     * @param range - диапозон действий.
+     * @param range    - диапозон действий.
      * @return - считывает строку с консоли.
      */
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         System.out.println(question);
         if ("Select: ".equals(question) && !flag) {
             flag = true;
-            System.out.println(list[0]);
-            return Integer.valueOf(list[0]);
+            System.out.println(list.get(0));
+            return Integer.valueOf(list.get(0));
         } else if ("Select: ".equals(question)) {
-            System.out.println(list[5]);
-            return Integer.valueOf(list[5]);
+            System.out.println(list.get(5));
+            return Integer.valueOf(list.get(5));
         }
-        return Integer.valueOf(list[5]);
+        return Integer.valueOf(list.get(5));
     }
 
     /**
@@ -62,17 +63,17 @@ public class StubInput implements Input {
     public String ask(String question) {
         System.out.println(question);
         if ("Input item's name: ".equals(question) || "Correct name: ".equals(question)) {
-            System.out.println(list[2]);
-            return list[2];
+            System.out.println(list.get(2));
+            return list.get(2);
         } else if ("Input description: ".equals(question) || "Correct description: ".equals(question)) {
-            System.out.println(list[3]);
-            return list[3];
+            System.out.println(list.get(3));
+            return list.get(3);
         } else if ("Input date: ".equals(question) || "Correct date: ".equals(question)) {
-            System.out.println(list[4]);
-            return list[4];
+            System.out.println(list.get(4));
+            return list.get(4);
         } else if ("Input ID: ".equals(question)) {
-            System.out.println(list[1]);
-            return list[1];
+            System.out.println(list.get(1));
+            return list.get(1);
         }
         return "";
     }

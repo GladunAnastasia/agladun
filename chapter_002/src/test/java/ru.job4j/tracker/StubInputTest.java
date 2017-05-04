@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -18,9 +20,9 @@ public class StubInputTest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "", "test name", "desc", "123", "6"});
+        Input input = new StubInput(Arrays.asList(new String[]{"0", "", "test name", "desc", "123", "6"}));
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("test name"));
+        assertThat(tracker.getAll().get(0).getName(), is("test name"));
     }
 
     /**
@@ -31,10 +33,11 @@ public class StubInputTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", 123456L, "testDescription");
         tracker.add(item);
-        Input input = new StubInput(new String[]{"1", "", "", "", "", "6"});
+        Input input = new StubInput(Arrays.asList(new String[]{"1", "", "", "", "", "6"}));
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0], is(item));
+        assertThat(tracker.getAll().get(0), is(item));
     }
+
     /**
      * MethodTest.
      */
@@ -43,12 +46,12 @@ public class StubInputTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", 123456L, "testDescription");
         tracker.add(item);
-        Input input = new StubInput(new String[]{"2", item.getId(), "test name NEW", "descNEW", "123123", "6"});
+        Input input = new StubInput(Arrays.asList(new String[]{"2", item.getId(), "test name NEW", "descNEW", "123123", "6"}));
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getId(), is(item.getId()));
-        assertThat(tracker.getAll()[0].getName(), is("test name NEW"));
-        assertThat(tracker.getAll()[0].getCreated(), is(123123L));
-        assertThat(tracker.getAll()[0].getDesc(), is("descNEW"));
+        assertThat(tracker.getAll().get(0).getId(), is(item.getId()));
+        assertThat(tracker.getAll().get(0).getName(), is("test name NEW"));
+        assertThat(tracker.getAll().get(0).getCreated(), is(123123L));
+        assertThat(tracker.getAll().get(0).getDesc(), is("descNEW"));
     }
 
     /**
@@ -59,9 +62,9 @@ public class StubInputTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", 123456L, "testDescription");
         tracker.add(item);
-        Input input = new StubInput(new String[]{"3", item.getId(), "", "", "", "6"});
+        Input input = new StubInput(Arrays.asList(new String[]{"3", item.getId(), "", "", "", "6"}));
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll().length, is(0));
+        assertThat(tracker.findAll().isEmpty(), is(true));
     }
 
     /**
@@ -76,7 +79,7 @@ public class StubInputTest {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        Input input = new StubOutput(new String[]{"4", item3.getId(), "", "", "", "6"});
+        Input input = new StubOutput(Arrays.asList(new String[]{"4", item3.getId(), "", "", "", "6"}));
         new StartUI(input, tracker).init();
         assertThat(((StubOutput) input).getText(), is("ID: " + item3.getId() + " Name: " + item3.getName() + " Description: " + item3.getDesc()));
     }
@@ -95,7 +98,7 @@ public class StubInputTest {
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(item4);
-        Input input = new StubOutput(new String[]{"5", "", item2.getName(), "", "", "6"});
+        Input input = new StubOutput(Arrays.asList(new String[]{"5", "", item2.getName(), "", "", "6"}));
         new StartUI(input, tracker).init();
         assertThat(((StubOutput) input).getText(), is("ID: " + item2.getId() + " Name: " + item2.getName() + " Description: " + item2.getDesc() + System.getProperty("line.separator") + "ID: " + item4.getId() + " Name: " + item4.getName() + " Description: " + item4.getDesc() + System.getProperty("line.separator")));
     }

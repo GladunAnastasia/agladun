@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 /**
  * Интерфейс Functions.
  *
@@ -18,5 +20,5 @@ public interface Input {
      * @param range    - диапозон действий.
      * @return - возвращает номер позиции.
      */
-    int ask(String question, int[] range);
+    int ask(String question, List<Integer> range);
 }

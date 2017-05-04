@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Класс Tracker.
@@ -12,7 +13,7 @@ public class Tracker {
     /**
      * Массив объектов типа Item.
      */
-    private Item[] items = new Item[10];
+    private ArrayList<Item> items = new ArrayList<Item>();
     /**
      * Номер позиции.
      */
@@ -25,7 +26,7 @@ public class Tracker {
      * @return - объект типа Item.
      */
     public Item add(Item item) {
-        this.items[position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -36,9 +37,9 @@ public class Tracker {
      */
     public void update(Item item) {
         String id = item.getId();
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                items[i] = item;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) != null && items.get(i).getId().equals(id)) {
+                items.set(i, item);
             }
         }
     }
@@ -50,9 +51,9 @@ public class Tracker {
      * @return возвращает найденный Item. Если Item не найден - возвращает null.
      */
     public Item findById(String id) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                return items[i];
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) != null && items.get(i).getId().equals(id)) {
+                return items.get(i);
             }
         }
         return null;
@@ -65,11 +66,10 @@ public class Tracker {
      */
     public void delete(Item item) {
         String id = item.getId();
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                System.arraycopy(items, i + 1, items, i, items.length - i - 1);
-                System.out.println(position);
-                items[position - 1] = null;
+        Iterator<Item> it = items.iterator();
+        while (it.hasNext()) {
+            if (it.next().getId().equals(id)) {
+                it.remove();
             }
         }
     }
@@ -79,14 +79,15 @@ public class Tracker {
      *
      * @return возвращает копию массива this.items
      */
-    public Item[] findAll() {
-        for (int i = 0; i < position; i++) {
-            if (items[i] == null) {
-                System.arraycopy(items, i + 1, items, i, items.length - i-- - 1);
-                position--;
+    public ArrayList<Item> findAll() {
+        ArrayList<Item> itemsNew = (ArrayList<Item>) items.clone();
+        Iterator<Item> it = itemsNew.iterator();
+        while (it.hasNext()) {
+            if (it.next() == null) {
+                it.remove();
             }
         }
-        return Arrays.copyOf(items, position);
+        return itemsNew;
     }
 
     /**
@@ -95,15 +96,16 @@ public class Tracker {
      * @param key - название заявки
      * @return - возвращает массив объектов типа Item
      */
-    public Item[] findByName(String key) {
-        Item[] itemNew = new Item[10];
-        int j = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getName().equals(key)) {
-                itemNew[j++] = items[i];
+    public ArrayList<Item> findByName(String key) {
+        ArrayList<Item> itemsNew = new ArrayList<Item>();
+        Iterator<Item> it = items.iterator();
+        while (it.hasNext()) {
+            Item item = it.next();
+            if (item.getName().equals(key)) {
+                itemsNew.add(item);
             }
         }
-        return Arrays.copyOf(itemNew, j);
+        return itemsNew;
     }
 
     /**
@@ -111,14 +113,8 @@ public class Tracker {
      *
      * @return массив.
      */
-    public Item[] getAll() {
-        return Arrays.copyOf(items, position);
+    public ArrayList<Item> getAll() {
+        return items;
     }
 
-    /**
-     * @return - возвращает допустимое количество заявок.
-     */
-    public int getLength() {
-        return items.length;
-    }
 }
