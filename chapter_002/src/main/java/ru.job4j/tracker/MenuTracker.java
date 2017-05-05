@@ -32,14 +32,6 @@ public class MenuTracker {
      */
     private ArrayList<UserAction> actions = new ArrayList<UserAction>();
     /**
-     * Флаг.
-     */
-    private boolean doWhile = true;
-    /**
-     * Номер позиции.
-     */
-    private int position = 0;
-    /**
      * ADD.
      */
     private static final int ADD = 0;

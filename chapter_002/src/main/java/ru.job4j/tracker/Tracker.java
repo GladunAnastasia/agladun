@@ -80,11 +80,12 @@ public class Tracker {
      * @return возвращает копию массива this.items
      */
     public ArrayList<Item> findAll() {
-        ArrayList<Item> itemsNew = (ArrayList<Item>) items.clone();
-        Iterator<Item> it = itemsNew.iterator();
+        ArrayList<Item> itemsNew = new ArrayList<Item>();
+        Iterator<Item> it = items.iterator();
         while (it.hasNext()) {
-            if (it.next() == null) {
-                it.remove();
+            Item item = it.next();
+            if (item != null) {
+                itemsNew.add(item);
             }
         }
         return itemsNew;
