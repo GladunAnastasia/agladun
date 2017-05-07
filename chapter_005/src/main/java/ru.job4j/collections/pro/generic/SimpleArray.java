@@ -5,9 +5,9 @@ import java.util.Arrays;
 /**
  * Класс SimpleArray.
  *
+ * @param <T> - параметр.
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 07.05.2017
- * @param <T> - параметр.
  */
 public class SimpleArray<T> {
     /**
@@ -59,12 +59,17 @@ public class SimpleArray<T> {
      * @param value - значение списка.
      */
     public void add(int index, T value) {
-        if (position == size) {
-            increaseSizeArray();
+        if (position >= index) {
+            if (position == size) {
+                increaseSizeArray();
+            }
+            System.arraycopy(objects, index, objects, index + 1, position - index);
+            position++;
+            objects[index] = value;
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
         }
-        System.arraycopy(objects, index, objects, index + 1, position - index);
-        position++;
-        objects[index] = value;
+
     }
 
     /**
@@ -72,7 +77,11 @@ public class SimpleArray<T> {
      * @return - возвращает элемент списка по индексу.
      */
     public T get(int index) {
-        return (T) objects[index];
+        if (position > index) {
+            return (T) objects[index];
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
     }
 
     /**
@@ -82,7 +91,11 @@ public class SimpleArray<T> {
      * @param value - значение списка.
      */
     public void update(int index, T value) {
-        objects[index] = value;
+        if (position > index) {
+            objects[index] = value;
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
     }
 
     /**
@@ -91,10 +104,15 @@ public class SimpleArray<T> {
      * @param index - индекс списка.
      */
     public void delete(int index) {
-        objects[index] = null;
-        System.arraycopy(objects, index + 1, objects, index, position - index - 1);
-        objects[position - 1] = null;
-        position--;
+        if (position > index) {
+            objects[index] = null;
+            System.arraycopy(objects, index + 1, objects, index, position - index - 1);
+            objects[position - 1] = null;
+            position--;
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
     }
 
     /**
