@@ -28,9 +28,9 @@ public class IteratorConvertTest {
         List<Iterator<Integer>> list = Arrays.asList(new Iterator[]{list1.iterator(), list2.iterator(), list3.iterator()});
         Iterator<Iterator<Integer>> itit = list.iterator();
         Iterator<Integer> it = (Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)).iterator();
-        Iterator<Integer> it2 = itConvert.convert(itit);
-        while (it.hasNext() || it2.hasNext()) {
-            assertThat(it.next(), is(it2.next()));
+        itConvert = (IteratorConvert) itConvert.convert(itit);
+        while (itConvert.hasNext() || it.hasNext()) {
+            assertThat(itConvert.next(), is(it.next()));
         }
     }
 }

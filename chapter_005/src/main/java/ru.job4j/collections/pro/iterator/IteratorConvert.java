@@ -53,7 +53,8 @@ public class IteratorConvert implements Iterator<Integer> {
                 list.add(next());
             }
         }
-        return list.iterator();
+        itInteger = list.iterator();
+        return this;
     }
 
 
