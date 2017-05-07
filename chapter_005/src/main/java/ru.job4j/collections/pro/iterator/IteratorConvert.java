@@ -27,11 +27,9 @@ public class IteratorConvert implements Iterator<Integer> {
     public boolean hasNext() {
         if (itInteger.hasNext()) {
             return true;
-        } else {
-            if (itIterator.hasNext()) {
-                itInteger = itIterator.next();
-                return hasNext();
-            }
+        } else if (itIterator.hasNext()) {
+            itInteger = itIterator.next();
+            return hasNext();
         }
         return false;
     }
@@ -43,11 +41,9 @@ public class IteratorConvert implements Iterator<Integer> {
     public Integer next() {
         if (itInteger.hasNext()) {
             return itInteger.next();
-        } else {
-            if (itIterator.hasNext()) {
-                itInteger = itIterator.next();
-                return next();
-            }
+        } else if (itIterator.hasNext()) {
+            itInteger = itIterator.next();
+            return next();
         }
         return null;
     }
