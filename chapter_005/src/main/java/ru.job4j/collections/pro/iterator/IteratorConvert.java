@@ -1,7 +1,6 @@
 package ru.job4j.collections.pro.iterator;
 
 import java.util.Iterator;
-import java.util.ArrayList;
 
 /**
  * Класс IteratorConvert.
@@ -26,7 +25,15 @@ public class IteratorConvert implements Iterator<Integer> {
      */
     @Override
     public boolean hasNext() {
-        return itInteger.hasNext();
+        if (itInteger.hasNext()) {
+            return true;
+        } else {
+            if (itIterator.hasNext()) {
+                itInteger = itIterator.next();
+                return hasNext();
+            }
+        }
+        return false;
     }
 
     /**
@@ -34,26 +41,28 @@ public class IteratorConvert implements Iterator<Integer> {
      */
     @Override
     public Integer next() {
-        return itInteger.hasNext() ? itInteger.next() : null;
+        if (itInteger.hasNext()) {
+            return itInteger.next();
+        } else {
+            if (itIterator.hasNext()) {
+                itInteger = itIterator.next();
+                return next();
+            }
+        }
+        return null;
     }
 
     /**
-     * Ковертирует итератор итераторов, которвые содержат данные типа Integer, в один итератор со всеми данными типа Integer.
+     * Конвертирует итератор итераторов, которвые содержат данные типа Integer, в один итератор со всеми данными типа Integer.
      *
      * @param it - Ковертирует итератор итераторов, которвые содержат данные типа Integer.
      * @return - возвращает итератор, содержащий данные типа Integer.
      */
     public Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         itIterator = it;
-        ArrayList<Integer> list = new ArrayList<Integer>();
-
-        while (itIterator.hasNext()) {
+        if (itIterator.hasNext()) {
             itInteger = itIterator.next();
-            while (hasNext()) {
-                list.add(next());
-            }
         }
-        itInteger = list.iterator();
         return this;
     }
 
