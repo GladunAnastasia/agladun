@@ -59,7 +59,7 @@ public class SimpleArray<T> {
      * @param value - значение списка.
      */
     public void add(int index, T value) {
-        if (position >= index) {
+        if (position >= index && index >= 0) {
             if (position == size) {
                 increaseSizeArray();
             }
@@ -69,7 +69,6 @@ public class SimpleArray<T> {
         } else {
             throw new ArrayIndexOutOfBoundsException();
         }
-
     }
 
     /**
@@ -77,7 +76,7 @@ public class SimpleArray<T> {
      * @return - возвращает элемент списка по индексу.
      */
     public T get(int index) {
-        if (position > index) {
+        if (position > index && index >= 0) {
             return (T) objects[index];
         } else {
             throw new ArrayIndexOutOfBoundsException();
@@ -91,7 +90,7 @@ public class SimpleArray<T> {
      * @param value - значение списка.
      */
     public void update(int index, T value) {
-        if (position > index) {
+        if (position > index && index >= 0) {
             objects[index] = value;
         } else {
             throw new ArrayIndexOutOfBoundsException();
@@ -104,7 +103,7 @@ public class SimpleArray<T> {
      * @param index - индекс списка.
      */
     public void delete(int index) {
-        if (position > index) {
+        if (position > index && index >= 0) {
             objects[index] = null;
             System.arraycopy(objects, index + 1, objects, index, position - index - 1);
             objects[position - 1] = null;
