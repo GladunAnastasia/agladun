@@ -7,12 +7,21 @@ package ru.job4j.collections.pro.generic;
  */
 public abstract class Base {
     /**
+     * Id.
+     */
+    private String id;
+
+    /**
      * @return - возвращает id.
      */
-    abstract String getId();
+    public String getId() {
+        return id;
+    }
 
     /**
      * @param id - устанавливает id.
      */
-    abstract void setId(String id);
+    public void setId(String id) {
+        this.id = id;
+    }
 }
