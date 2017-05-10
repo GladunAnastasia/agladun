@@ -6,7 +6,7 @@ package ru.job4j.collections.pro.generic;
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 10.05.2017
  */
-public class AbstractStore implements Store<Base> {
+public class AbstractStore<T extends Base> implements Store<T> {
     /**
      * Счетчик позиций.
      */
@@ -14,14 +14,14 @@ public class AbstractStore implements Store<Base> {
     /**
      * Хранилище.
      */
-    private SimpleArray<Base> simple = new SimpleArray<>();
+    private SimpleArray<T> simple = new SimpleArray<>();
 
     /**
      * Добавляет в значение в хранилище.
      *
      * @param value - значение.
      */
-    public void add(Base value) {
+    public void add(T value) {
         position = String.valueOf(Integer.parseInt(position) + 1);
         value.setId(position);
         simple.add(value);
@@ -33,7 +33,7 @@ public class AbstractStore implements Store<Base> {
      * @param id    - id.
      * @param value - значение.
      */
-    public void update(String id, Base value) {
+    public void update(String id, T value) {
         int index = findIndexById(id);
         if (index == -1) {
             System.out.println("Элемента с id " + id + " нет в информационной базе.");
@@ -75,7 +75,7 @@ public class AbstractStore implements Store<Base> {
     /**
      * @return - возвращает SimpleArray.
      */
-    public SimpleArray<Base> getArray() {
+    public SimpleArray<T> getArray() {
         return simple;
     }
 }
