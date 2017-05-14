@@ -16,7 +16,7 @@ public class MyStackTest {
      * Test method.
      */
     @Test
-    public void whenThen() {
+    public void whenDeleteThenSizeZero() {
         MyStack<String> stack = new MyStack<>();
         stack.push("1");
         stack.push("2");

@@ -16,7 +16,7 @@ public class MyQueueTest {
      * Test method.
      */
     @Test
-    public void whenThen() {
+    public void whenDeleteThenSizeZero() {
         MyQueue<String> queue = new MyQueue<>();
         queue.push("1");
         queue.push("2");
