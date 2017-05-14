@@ -1,16 +1,14 @@
 package ru.job4j.collections.pro.list;
 
 
-import java.util.Iterator;
-
 /**
  * Класс MyStack.
  *
+ * @param <T> - параметр.
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 14.05.2017
- * @param <T> - параметр.
  */
-public class MyStack<T> implements Iterable<T> {
+public class MyStack<T> {
     /**
      * Список.
      */
@@ -29,6 +27,7 @@ public class MyStack<T> implements Iterable<T> {
 
     /**
      * Добавляет элемент в стэк.
+     *
      * @param value - элемент.
      */
     public void push(T value) {
@@ -38,6 +37,7 @@ public class MyStack<T> implements Iterable<T> {
 
     /**
      * Удаляет элемент из стэка.
+     *
      * @return - возвращает удаленный элемент.
      */
     public T pop() {
@@ -52,13 +52,5 @@ public class MyStack<T> implements Iterable<T> {
      */
     public int getLength() {
         return size;
-    }
-
-    /**
-     * @return - возвращает итератор.
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return list.iterator();
     }
 }

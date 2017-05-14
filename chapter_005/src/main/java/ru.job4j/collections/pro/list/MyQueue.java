@@ -1,8 +1,6 @@
 package ru.job4j.collections.pro.list;
 
 
-import java.util.Iterator;
-
 /**
  * Класс MyQueue.
  *
@@ -10,7 +8,7 @@ import java.util.Iterator;
  * @since 14.05.2017
  * @param <T> - параметр.
  */
-public class MyQueue<T> implements Iterable<T> {
+public class MyQueue<T> {
     /**
      * Список.
      */
@@ -54,13 +52,5 @@ public class MyQueue<T> implements Iterable<T> {
      */
     public int getLength() {
         return size;
-    }
-
-    /**
-     * @return - возвращает итератор.
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return list.iterator();
     }
 }
