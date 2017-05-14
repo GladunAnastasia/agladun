@@ -1,10 +1,11 @@
 package ru.job4j.collections.pro.generic;
 
 /**
- * Класс RoleStore.
+ * Класс AbstractStore.
  *
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 10.05.2017
+ * @param <T> - параметр.
  */
 public class AbstractStore<T extends Base> implements Store<T> {
     /**
