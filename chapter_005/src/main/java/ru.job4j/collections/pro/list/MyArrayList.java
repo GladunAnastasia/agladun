@@ -6,15 +6,15 @@ import java.util.Iterator;
 /**
  * Класс MyArrayList.
  *
+ * @param <T> - параметр.
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 14.05.2017
- * @param <T> - параметр.
  */
 public class MyArrayList<T> implements SimpleContainer<T> {
     /**
      * Размер массива.
      */
-    private int size;
+    private int size = 10;
     /**
      * Массив.
      */
@@ -23,6 +23,13 @@ public class MyArrayList<T> implements SimpleContainer<T> {
      * Позиция массива.
      */
     private int position;
+
+    /**
+     * Конструктор.
+     */
+    public MyArrayList() {
+        objects = new Object[size];
+    }
 
     /**
      * @return - возвращает итератор.
