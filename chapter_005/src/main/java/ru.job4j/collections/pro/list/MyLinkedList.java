@@ -1,13 +1,14 @@
 package ru.job4j.collections.pro.list;
 
 import java.util.Iterator;
+import java.util.Stack;
 
 /**
  * Класс MyLinkedList.
  *
+ * @param <T> - параметр.
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 14.05.2017
- * @param <T> - параметр.
  */
 public class MyLinkedList<T> implements SimpleContainer<T> {
     /**
@@ -79,6 +80,7 @@ public class MyLinkedList<T> implements SimpleContainer<T> {
         } else {
             l.next = newNode;
         }
+        Stack t = new Stack();
     }
 
     /**
@@ -100,6 +102,7 @@ public class MyLinkedList<T> implements SimpleContainer<T> {
 
     /**
      * Класс Node.
+     *
      * @param <T> - параметр.
      */
     private class Node<T> {
@@ -142,5 +145,36 @@ public class MyLinkedList<T> implements SimpleContainer<T> {
      */
     public int getLength() {
         return index;
+    }
+
+    /**
+     * Удаляет элемент из списка по индексу.
+     *
+     * @param index - индекс.
+     */
+    public void remove(int index) {
+        if (this.index > index && index >= 0) {
+            Node<T> element = first;
+            for (int i = 1; i <= index; i++) {
+                element = element.next;
+            }
+            if (element.next != null && element.prev != null) {
+                element.prev.next = element.next;
+                element.next.prev = element.prev;
+            } else if (element.next == null && element.prev == null) {
+                last = element;
+                first = element;
+            } else if (element.next == null) {
+                element.prev.next = null;
+                last = element.prev;
+            } else if (element.prev == null) {
+                element.next.prev = null;
+                first = element.next;
+            }
+            element = null;
+            this.index--;
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
     }
 }

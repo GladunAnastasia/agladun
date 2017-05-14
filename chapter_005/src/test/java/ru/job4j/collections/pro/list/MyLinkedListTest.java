@@ -51,4 +51,21 @@ public class MyLinkedListTest {
         assertThat(it.hasNext(), is(false));
     }
 
+    /**
+     * Test method.
+     */
+    @Test
+    public void whenDelete() {
+        MyLinkedList<String> list = new MyLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        list.remove(2);
+        list.remove(0);
+        list.remove(2);
+        assertThat(list.getLength(), is(2));
+    }
+
 }
