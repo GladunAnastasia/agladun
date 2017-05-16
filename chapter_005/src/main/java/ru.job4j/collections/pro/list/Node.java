@@ -42,12 +42,12 @@ public class Node<T> {
      * @return - возвращает true или false.
      */
     public boolean hasCycle(Node first) {
-        Node elementOneStep = first;
-        Node elementTwoStep = first.next;
-        while (!elementOneStep.equals(elementTwoStep)) {
-            elementOneStep = elementOneStep.next == null ? null : elementOneStep.next;
-            elementTwoStep = elementTwoStep.next == null ? null : elementTwoStep.next.next == null ? null : elementTwoStep.next.next;
-            if (elementOneStep == null || elementTwoStep == null) {
+        Node hare = first;
+        Node turtle = first.next;
+        while (!hare.equals(turtle)) {
+            hare = hare.next == null ? null : hare.next;
+            turtle = turtle.next == null ? null : turtle.next.next == null ? null : turtle.next.next;
+            if (hare == null || turtle == null) {
                 return false;
             }
         }

@@ -80,7 +80,6 @@ public class MyLinkedList<T> implements SimpleContainer<T> {
         } else {
             l.next = newNode;
         }
-        Stack t = new Stack();
     }
 
     /**
