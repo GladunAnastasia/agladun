@@ -1,5 +1,6 @@
 package ru.job4j.collections.pro.map;
 
+<<<<<<< HEAD
 import java.util.Calendar;
 
 /**
@@ -32,4 +33,10 @@ public class User3 {
         }
         return birthday != null ? birthday.equals(user.birthday) : user.birthday == null;
     }
+=======
+/**
+ * Created by Netmislei on 25.07.2017.
+ */
+public class User3 {
+>>>>>>> 58d5c0b... new
 }
