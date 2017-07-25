@@ -1,7 +1,6 @@
 package ru.job4j.collections.pro.list;
 
 import java.util.Iterator;
-import java.util.Stack;
 
 /**
  * Класс MyLinkedList.
@@ -80,7 +79,6 @@ public class MyLinkedList<T> implements SimpleContainer<T> {
         } else {
             l.next = newNode;
         }
-        Stack t = new Stack();
     }
 
     /**

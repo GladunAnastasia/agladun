@@ -1,6 +1,8 @@
 package ru.job4j.collections.pro.list;
 
 
+import java.util.Iterator;
+
 /**
  * Класс MyStack.
  *
@@ -8,7 +10,7 @@ package ru.job4j.collections.pro.list;
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 14.05.2017
  */
-public class MyStack<T> {
+public class MyStack<T> implements Iterable<T> {
     /**
      * Список.
      */
@@ -52,5 +54,13 @@ public class MyStack<T> {
      */
     public int getLength() {
         return size;
+    }
+
+    /**
+     * @return - возвращает итератор.
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return list.iterator();
     }
 }
