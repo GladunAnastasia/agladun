@@ -1,6 +1,5 @@
 package ru.job4j.collections.pro.map;
 
-<<<<<<< HEAD
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
@@ -28,6 +27,7 @@ public class UserTest {
         map.put(second, new Object());
         System.out.println(map);
     }
+
     /**
      * Method.
      * Выводит на печать два объекта-значения. Потому что хоть ключи этих объектов-значений и содержат одинаковые данные и
@@ -42,6 +42,7 @@ public class UserTest {
         map.put(second, new Object());
         System.out.println(map);
     }
+
     /**
      * Method.
      * Выводит на печать два объекта-значения. Потому что хоть ключи этих объектов-значений и содержат одинаковые данные и
@@ -56,6 +57,7 @@ public class UserTest {
         map.put(second, new Object());
         System.out.println(map);
     }
+
     /**
      * Method.
      * Выводит на печать один объект-значение. Потому что для класса User переопределены и метод hashCode, и метод equals.
@@ -69,10 +71,4 @@ public class UserTest {
         map.put(second, new Object());
         System.out.println(map);
     }
-=======
-/**
- * Created by Netmislei on 25.07.2017.
- */
-public class UserTest {
->>>>>>> 58d5c0b... new
 }

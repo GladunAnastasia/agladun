@@ -1,6 +1,5 @@
 package ru.job4j.collections.pro.map;
 
-<<<<<<< HEAD
 import java.util.Calendar;
 
 /**
@@ -22,8 +21,12 @@ public class User3 {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) { return true; }
-        if (o == null || o.getClass() != getClass()) { return false; }
+        if (o == this) {
+            return true;
+        }
+        if (o == null || o.getClass() != getClass()) {
+            return false;
+        }
         User3 user = (User3) o;
         if (name != null ? !name.equals(user.name) : user.name != null) {
             return false;
@@ -33,10 +36,4 @@ public class User3 {
         }
         return birthday != null ? birthday.equals(user.birthday) : user.birthday == null;
     }
-=======
-/**
- * Created by Netmislei on 25.07.2017.
- */
-public class User3 {
->>>>>>> 58d5c0b... new
 }

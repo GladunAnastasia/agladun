@@ -1,6 +1,5 @@
 package ru.job4j.collections.pro.map;
 
-<<<<<<< HEAD
 import java.util.Calendar;
 
 /**
@@ -46,11 +45,3 @@ public class User4 {
         return result;
     }
 }
-
-=======
-/**
- * Created by Netmislei on 25.07.2017.
- */
-public class User4 {
-}
->>>>>>> 58d5c0b... new
