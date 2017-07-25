@@ -1,5 +1,6 @@
 package ru.job4j.collections.pro.map;
 
+<<<<<<< HEAD
 import java.util.Calendar;
 
 /**
@@ -26,4 +27,10 @@ public class User2 {
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         return result;
     }
+=======
+/**
+ * Created by Netmislei on 25.07.2017.
+ */
+public class User2 {
+>>>>>>> 58d5c0b... new
 }

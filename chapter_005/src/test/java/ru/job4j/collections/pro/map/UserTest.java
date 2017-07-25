@@ -1,5 +1,6 @@
 package ru.job4j.collections.pro.map;
 
+<<<<<<< HEAD
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
@@ -68,4 +69,10 @@ public class UserTest {
         map.put(second, new Object());
         System.out.println(map);
     }
+=======
+/**
+ * Created by Netmislei on 25.07.2017.
+ */
+public class UserTest {
+>>>>>>> 58d5c0b... new
 }
