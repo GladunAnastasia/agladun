@@ -1,54 +1,42 @@
 package ru.job4j.collections.pro.set;
 
-import java.util.HashMap;
-import java.util.Iterator;
+
+import java.util.*;
 
 /**
  * Класс ImprovedSet.
  *
- * @param <T> - параметр.
  * @author Анастасия Гладун (netmislei@mail.ru)
  * @since 24.07.2017
  */
 public class ImprovedSet<T> implements SimpleSet<T> {
     /**
-     * Коллекция Map.
+     * Карта.
      */
-    private HashMap<T, Object> map;
-    /**
-     * Объект для записи значений в map.
-     */
-    private static final Object PRESENT = new Object();
+    MyMap<T, Object> myMap = new MyMap<>();
 
     /**
-     * Конструктор.
-     */
-    public ImprovedSet() {
-        map = new HashMap<T, Object>();
-    }
-
-    /**
-     * Добавляет значение во множество.
+     * Добавляет значения во множество.
      *
-     * @param value - добавляемое значение в map. Ключ.
-     * @return - true или false в зависимости от того
+     * @param value - добавляемое значение.
+     * @return - true, если элемент добавлен во множество, и false, если не добавлен.
      */
     public boolean add(T value) {
-        return map.put(value, PRESENT) == null;
+        return myMap.put(value, new Object()) == null;
     }
 
     /**
      * @return - возвращает итератор.
      */
     public Iterator<T> iterator() {
-        return map.keySet().iterator();
+        return myMap.iterator();
     }
 
     /**
      * @return - возвращает размер множества.
      */
     public int size() {
-        return map.size();
+        return myMap.size();
     }
-
 }
+
