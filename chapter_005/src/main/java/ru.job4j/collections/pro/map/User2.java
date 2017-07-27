@@ -21,9 +21,11 @@ public class User2 {
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + children;
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        return result;
+        // хэш-код объекта рассчитывается по его основным полям.
+        int result = name != null ? name.hashCode() : 0; // у полей ссылочного типа берется их хэш-код. Если поле равно null, то хэш-код = 0.
+        result = 31 * result + children; // далее рассчитанный результат умножаем на 31 и к нему прибавляем значение поля children,
+        // так как это поле содержит данные типа int, то прибавляем не хэш-код, а само значение этого поля.
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0); // снова рассчитанный выше результат умножаем на 31 и прибавляем хэш-код
+        return result;                                                       // следующего поля.
     }
 }

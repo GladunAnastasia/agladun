@@ -3,6 +3,7 @@ package ru.job4j.collections.pro.set;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.Iterator;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -21,6 +22,8 @@ public class ImprovedSetTest {
     public void whenCompareTwoMethodsThenFirstIsFaster() {
         Date date1 = new Date();
         ImprovedSet<Integer> set = new ImprovedSet<>();
+        Iterator it = set.iterator();
+
         for (int i = 0; i < 100000; i++) {
             set.add(i);
         }

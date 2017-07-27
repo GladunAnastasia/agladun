@@ -139,7 +139,7 @@ public class MyMap<K, V> implements SimpleMap<K, V> {
      */
     public class IteratorMap implements Iterator<K> {
         /**
-         *
+         * Индекс.
          */
         private int index = 0;
 
@@ -147,14 +147,25 @@ public class MyMap<K, V> implements SimpleMap<K, V> {
          * @return - возвращает следующую пару ключ-значение.
          */
         public K next() {
-            return (K) table[index++].getKey();
+            for (; index < table.length; index++) {
+                if (table[index] != null) {
+                    return (K) table[index++].getKey();
+                }
+            }
+            throw new NullPointerException();
         }
 
         /**
          * @return - true или false в зависимости от того, есть ли еще в карте пары.
          */
         public boolean hasNext() {
-            return index < count;
+            int inx = index;
+            for (; inx < table.length; inx++) {
+                if (table[inx] != null) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 

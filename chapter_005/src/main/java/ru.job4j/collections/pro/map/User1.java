@@ -12,6 +12,7 @@ public class User1 {
     private String name;
     private int children;
     private Calendar birthday;
+
     public User1(String name, int children, Calendar birthday) {
         this.name = name;
         this.children = children;
