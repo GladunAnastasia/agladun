@@ -141,15 +141,44 @@ public class MyMap<K, V> implements SimpleMap<K, V> {
         /**
          * Индекс.
          */
-        private int index = 0;
+        private int inx = 0;
+        /**
+         * Пара ключ-значение.
+         */
+        Entry<K, V> k;
+        /**
+         * Длина массива table.
+         */
+        private int length = table.length;
 
         /**
          * @return - возвращает следующую пару ключ-значение.
          */
         public K next() {
-            for (; index < table.length; index++) {
-                if (table[index] != null) {
-                    return (K) table[index++].getKey();
+            if (k == null) {
+                for (int i = 0; i < length; i++) {
+                    if (table[i] != null) {
+                        k = (Entry<K, V>) table[i];
+                        return k.getKey();
+                    }
+                }
+            } else {
+                if (k.next != null) {
+                    for (Entry<K, V> t = k; t != null; t = t.next) {
+                        if (t.getKey().hashCode() == k.getKey().hashCode() && t.getKey().equals(k.getKey())) {
+                            k = k.next;
+                            return k.getKey();
+                        }
+                    }
+                }
+                int hash = k.getKey().hashCode();
+                int index = (hash & 0x7FFFFFFF) % table.length;
+                for (int i = index + 1; i < length; i++) {
+                    if (table[i] == null) {
+                        continue;
+                    }
+                    k = (Entry<K, V>) table[i];
+                    return k.getKey();
                 }
             }
             throw new NullPointerException();
@@ -159,13 +188,19 @@ public class MyMap<K, V> implements SimpleMap<K, V> {
          * @return - true или false в зависимости от того, есть ли еще в карте пары.
          */
         public boolean hasNext() {
-            int inx = index;
-            for (; inx < table.length; inx++) {
-                if (table[inx] != null) {
+            if (k == null) {
+                boolean u = count > 0;
+                if (u) {
+                    inx++;
+                }
+                return u;
+            } else {
+                if (k.next != null) {
+                    inx++;
                     return true;
                 }
+                return inx++ < count;
             }
-            return false;
         }
     }
 
