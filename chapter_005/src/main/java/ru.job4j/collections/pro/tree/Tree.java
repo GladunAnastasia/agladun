@@ -1,4 +1,4 @@
-package ru.job4j.collections.pro.Tree;
+package ru.job4j.collections.pro.tree;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -165,6 +165,34 @@ public class Tree<T extends Comparable<T>> implements SimpleTree<T> {
      */
     public int compare(Node<T> node, T parent) {
         return (node.value).equals(parent) ? 0 : 1;
+    }
+
+    /**
+     * @return - возвращает true, если дерево является бинарным, в противном случае возвращает false.
+     */
+    public boolean isBinary() {
+        return recursionForBinary(nodeTree) != null;
+    }
+
+    /**
+     * Рекурсивный метод для проверки дерева на бинарность.
+     *
+     * @param node - первый элемент дерева.
+     * @return - возвращает null, если дерево не бинарное, в противном случае возвращает объект не равный null.
+     */
+    public Node<T> recursionForBinary(Node<T> node) {
+        if (node.children.size() > 2) {
+            return null;
+        }
+        Iterator<Node<T>> iter = node.children.iterator();
+        for (; iter.hasNext(); ) {
+            Node<T> o = iter.next();
+            Node<T> l = recursionForBinary(o);
+            if (l == null) {
+                return l;
+            }
+        }
+        return new Node<T>();
     }
 
     /**
