@@ -42,11 +42,7 @@ public class Tree<T extends Comparable<T>> implements SimpleTree<T> {
              * @return - возвращает следующий элемент дерева.
              */
             public T next() {
-                if (nextNode == null) {
-                    nextNode = nodeTree;
-                } else {
-                    nextNode = recursionForIterator(nodeTree, nextNode.value);
-                }
+                nextNode = (nextNode == null ? nodeTree : recursionForIterator(nodeTree, nextNode.value));
                 if (nextNode != null) {
                     index++;
                     return nextNode.value;
@@ -69,33 +65,39 @@ public class Tree<T extends Comparable<T>> implements SimpleTree<T> {
      * @return - возвращает следующий элемент.
      */
     public Node<T> recursionForIterator(Node<T> node, T parent) {
+        Node<T> y = null;
         Iterator<Node<T>> iter = node.children.iterator();
         if (node.value.equals(parent)) {
-            return iter.hasNext() ? iter.next() : null;
-        }
-        for (; iter.hasNext(); ) {
-            Node<T> o = iter.next();
-            if (compare(o, parent) == 0) {
-                Iterator<Node<T>> itit = o.children.iterator();
-                if (itit.hasNext()) {
-                    return itit.next();
-                } else if (iter.hasNext()) {
-                    return iter.next();
+            y = iter.hasNext() ? iter.next() : null;
+        } else {
+            for (; iter.hasNext(); ) {
+                Node<T> o = iter.next();
+                if (compare(o, parent) == 0) {
+                    Iterator<Node<T>> itit = o.children.iterator();
+                    if (itit.hasNext()) {
+                        y = itit.next();
+                        break;
+                    } else if (iter.hasNext()) {
+                        y = iter.next();
+                        break;
+                    }
+                    founded = true;
+                    y = null;
+                    break;
                 }
-                founded = true;
-                return null;
-            }
-            Node<T> l = recursionForIterator(o, parent);
-            if (l != null) {
-                return l;
-            } else {
-                if (founded && iter.hasNext()) {
-                    founded = false;
-                    return iter.next();
+                y = recursionForIterator(o, parent);
+                if (y != null) {
+                    break;
+                } else {
+                    if (founded && iter.hasNext()) {
+                        founded = false;
+                        y = iter.next();
+                        break;
+                    }
                 }
             }
         }
-        return null;
+        return y;
     }
 
     /**
@@ -111,26 +113,24 @@ public class Tree<T extends Comparable<T>> implements SimpleTree<T> {
      * @return - возвращает true, если элемент добавлен в дерево, в противном случае возвращает false.
      */
     public boolean add(T parent, T child) {
-        if (nodeTree != null) {
-            Node<T> y = recursion(nodeTree, parent);
+        Node<T> y;
+        if (nodeTree == null) {
+            nodeTree = new Node<>();
+            nodeTree.value = parent;
+            y = new Node<>();
+            y.value = child;
+            nodeTree.children.add(y);
+            count = 2;
+        } else {
+            y = recursion(nodeTree, parent);
             if (y != null) {
                 Node<T> newCh = new Node<T>();
                 newCh.value = child;
                 y.children.add(newCh);
                 count++;
-                return true;
             }
-            return false;
-
-        } else {
-            nodeTree = new Node<>();
-            nodeTree.value = parent;
-            Node<T> branchChild = new Node<>();
-            branchChild.value = child;
-            nodeTree.children.add(branchChild);
-            count = 2;
-            return true;
         }
+        return y != null;
     }
 
     /**
@@ -141,21 +141,18 @@ public class Tree<T extends Comparable<T>> implements SimpleTree<T> {
      * @return - возвращает элемент дерева, к которому будет добавлен дочерний элемент.
      */
     public Node<T> recursion(Node<T> node, T parent) {
+        Node<T> o = null;
         if (node.value.equals(parent)) {
-            return node;
-        }
-        Iterator<Node<T>> iter = node.children.iterator();
-        for (; iter.hasNext(); ) {
-            Node<T> o = iter.next();
-            if (compare(o, parent) == 0) {
-                return o;
-            }
-            Node<T> l = recursion(o, parent);
-            if (l != null) {
-                return l;
+            o = node;
+        } else {
+            Iterator<Node<T>> iter = node.children.iterator();
+            for (; iter.hasNext(); ) {
+                if (compare((o = iter.next()), parent) == 0 || (o = recursion(o, parent)) != null) {
+                    break;
+                }
             }
         }
-        return null;
+        return o;
     }
 
     /**
@@ -181,18 +178,18 @@ public class Tree<T extends Comparable<T>> implements SimpleTree<T> {
      * @return - возвращает null, если дерево не бинарное, в противном случае возвращает объект не равный null.
      */
     public Node<T> recursionForBinary(Node<T> node) {
+        Node<T> y = new Node<T>();
         if (node.children.size() > 2) {
-            return null;
-        }
-        Iterator<Node<T>> iter = node.children.iterator();
-        for (; iter.hasNext(); ) {
-            Node<T> o = iter.next();
-            Node<T> l = recursionForBinary(o);
-            if (l == null) {
-                return l;
+            y = null;
+        } else {
+            Iterator<Node<T>> iter = node.children.iterator();
+            for (; iter.hasNext(); ) {
+                if ((y = recursionForBinary(iter.next())) == null) {
+                    break;
+                }
             }
         }
-        return new Node<T>();
+        return y;
     }
 
     /**
