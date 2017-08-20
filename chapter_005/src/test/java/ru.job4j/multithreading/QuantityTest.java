@@ -2,6 +2,8 @@ package ru.job4j.multithreading;
 
 import org.junit.Test;
 
+import java.util.Date;
+
 /**
  * Класс QuantityTest.
  *
@@ -15,13 +17,16 @@ public class QuantityTest {
     @Test
     public void ThenEnterStringWhenGetWordQuantity() {
         Thread myFirstThread = new Thread(new WordQuantity("qwe ert tyu u ttt"));
-        Thread mySecondThread = new Thread(new SpaceQuantity("qwe ert tyu u ttt"));
+        //Thread mySecondThread = new Thread(new SpaceQuantity("qwe ert tyu u ttt")); Закомментировала вторую нить, чтобы не мешалась.
+        //mySecondThread.start();
+        System.out.println("Start");
         myFirstThread.start();
-        mySecondThread.start();
         try {
-            mySecondThread.join();
             myFirstThread.join();
+            //mySecondThread.join();
         } catch (Exception e) {
         }
+        System.out.println("Finish");
     }
+
 }
