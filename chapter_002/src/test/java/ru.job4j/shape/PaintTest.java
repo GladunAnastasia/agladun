@@ -1,5 +1,7 @@
 package ru.job4j.shape;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -16,12 +18,34 @@ import static org.hamcrest.core.Is.is;
  */
 public class PaintTest {
     /**
+     * Дефолтный вывод в консоль.
+     */
+    private final PrintStream stdout = System.out;
+    /**
+     * Буфер для результата.
+     */
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    /**
+     * Установка вывода результата в буфер.
+     */
+    @Before
+    public void loadOutput() {
+        System.setOut(new PrintStream(out));
+    }
+
+    /**
+     * Установка стандартного вывода результата на консоль.
+     */
+    @After
+    public void backOutput() {
+        System.setOut(stdout);
+    }
+    /**
      * Test Method.
      */
     @Test
     public void whenChooseTriangleThenShowTriangle() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         Paint paint = new Paint();
         paint.draw(new Triangle());
         String separator = System.getProperty("line.separator");
@@ -33,8 +57,6 @@ public class PaintTest {
      */
     @Test
     public void whenChooseSquareThenShowSquare() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         Paint paint = new Paint();
         paint.draw(new Square());
         String separator = System.getProperty("line.separator");
